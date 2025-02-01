@@ -44,7 +44,8 @@ int main(int ac, char **av)
     print_stack(stack_a);
     // rotate_a(&stack_a);
     // swap_a(&stack_a);
-    push_a(&stack_a, &stack_b);
-    print_stack(stack_b);
+    reverse_rotate_a(&stack_a);
+    // print_stack(stack_b);
+    print_stack(stack_a);
     return 0;
 }

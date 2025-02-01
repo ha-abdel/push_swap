@@ -36,6 +36,7 @@ void    rotate_a(t_stack **head);
 
 void    rotate_b(t_stack **head);
 
+void	reverse_rotate_a(t_stack **head);
 void    append(t_stack **head, int nb);
 
 void	push_a(t_stack **head, t_stack **to_push);
