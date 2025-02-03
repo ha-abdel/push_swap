@@ -2,11 +2,11 @@
 
 #define PUSH_SWAP_H
 
-#include "stdlib.h"
 #include "stdio.h"
 #include "stdlib.h"
 #include "string.h"
 #include "unistd.h"
+#include "limits.h"
 
 
 typedef struct s_stack
@@ -42,5 +42,17 @@ void    append(t_stack **head, int nb);
 void	push_a(t_stack **head, t_stack **to_push);
 int check_duplicte(t_stack *head, int value);
 
-int	ft_atoi(const char *str);
+long	ft_atoi(char *str);
+
+size_t	ft_count_words(char *s, char c);
+
+int	ft_isdigit(int c);
+
+int	ft_isdigit1(char *s);
+
+int	ft_is_empty(char *s);
+
+void free_all(char **numbers);
+
+void    ft_split(char *s, char c, char **arr);
 #endif

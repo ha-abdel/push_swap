@@ -1,6 +1,6 @@
 #include "push_swap.h"
 
-int	ft_atoi(const char *str)
+long	ft_atoi(char *str)
 {
 	long	nb;
 	int		sign;
@@ -20,13 +20,15 @@ int	ft_atoi(const char *str)
 	while ((str[i] >= '0' && str[i] <= '9'))
 	{
 		nb = nb * 10 + str[i] - '0';
+		if (nb > LONG_MAX / 10 || (nb == LONG_MAX / 10 && (str[i] - '0') > LONG_MAX % 10))
+			return (-1);
 		i++;
 	}
 	nb = nb * sign;
 	return (nb);
 }
 
-static char	*ft_checksep(const char *s, char c, int *index)
+char	*ft_checksep(const char *s, char c, int *index)
 {
 	int		start;
 	int		i;
@@ -52,7 +54,7 @@ static char	*ft_checksep(const char *s, char c, int *index)
 	return (ptr);
 }
 
-static size_t	ft_count_words(char const *s, char c)
+size_t	ft_count_words(char *s, char c)
 {
 	size_t	count;
 	size_t	i;
@@ -75,20 +77,16 @@ static size_t	ft_count_words(char const *s, char c)
 	return (count);
 }
 
-char	**ft_split(char const *s, char c)
+void	ft_split(char *s, char c, char **arr)
 {
-	size_t	i;
-	char	**arr;
+	static size_t	i;
 	int		index;
+	size_t count = 0;
 
 	if (!s)
-		return (NULL);
-	i = 0;
+		return ;
 	index = 0;
-	arr = (char **)malloc((ft_count_words(s, c) + 1) * sizeof(char *));
-	if (!arr)
-		return (NULL);
-	while (i < ft_count_words(s, c))
+	while (count < ft_count_words(s, c))
 	{
 		arr[i] = ft_checksep(s, c, &index);
 		if (!arr[i])
@@ -96,10 +94,43 @@ char	**ft_split(char const *s, char c)
 			while (i > 0)
 				free(arr[--i]);
 			free(arr);
-			return (NULL);
+			return ;
 		}
 		i++;
+		count++;
 	}
 	arr[i] = NULL;
-	return (arr);
+	// return (arr + i);
 }
+
+int	ft_isdigit(int c)
+{
+	if (c >= '0' && c <= '9')
+		return (1);
+	return (0);
+}
+
+int	ft_isdigit1(char *s)
+{
+	int i = 0;
+	while (s[i])
+	{
+		if (s[i] < '0' || s[i] > '9')
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
+int	ft_is_empty(char *s)
+{
+	int i = 0;
+	while (s[i])
+	{
+		if (s[i] != ' ')
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
