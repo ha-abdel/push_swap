@@ -171,16 +171,8 @@ void	append(t_stack **head, int nb)
 	if (!new)
 		return ;
 	new->number = nb;
-	new->prev = NULL;
-	if (!(*head))
-	{
-		new->next = NULL;
-		*head = new;
-		return ;
-	}
-	new->next = *head;
-	(*head)->prev = new;
-	*head = new;
+	lst_add_back(head, new);
+
 }
 
 int	check_duplicte(t_stack *head, int value)

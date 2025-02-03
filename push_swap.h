@@ -46,6 +46,10 @@ long	ft_atoi(char *str);
 
 size_t	ft_count_words(char *s, char c);
 
+int check_args(char *str);
+
+
+int count_args(int ac, char **av);
 int	ft_isdigit(int c);
 
 int	ft_isdigit1(char *s);
@@ -55,4 +59,8 @@ int	ft_is_empty(char *s);
 void free_all(char **numbers);
 
 void    ft_split(char *s, char c, char **arr);
+
+void fill_numbers(int ac, char **av, char **numbers);
+
+int check_numbers(char **numbers);
 #endif

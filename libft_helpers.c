@@ -1,5 +1,16 @@
 #include "push_swap.h"
 
+int ft_strlen(char *str)
+{
+	int len;
+
+	len = 0;
+	while (str[len] != '\0')
+	{
+		len++;
+	}
+	return len;
+}
 long	ft_atoi(char *str)
 {
 	long	nb;
@@ -9,6 +20,11 @@ long	ft_atoi(char *str)
 	nb = 0;
 	sign = 1;
 	i = 0;
+	if(ft_strlen(str) > 19 && str[i] != '0')
+	{
+		printf("Error: Number is too large\n");
+        exit(1);
+	}
 	while ((str[i] >= 9 && str[i] <= 13) || str[i] == 32)
 		i++;
 	if (str[i] == '-' || str[i] == '+')
@@ -21,8 +37,16 @@ long	ft_atoi(char *str)
 	{
 		nb = nb * 10 + str[i] - '0';
 		if (nb > LONG_MAX / 10 || (nb == LONG_MAX / 10 && (str[i] - '0') > LONG_MAX % 10))
-			return (-1);
+		{
+			printf("Error: Number is too large\n");
+        	exit(1);
+		}
 		i++;
+	}
+	if((str[i] == '-' || str[i] == '+') && nb == 0)
+	{
+		printf("Error: Invalid number\n");
+        exit(1);
 	}
 	nb = nb * sign;
 	return (nb);
@@ -115,7 +139,7 @@ int	ft_isdigit1(char *s)
 	int i = 0;
 	while (s[i])
 	{
-		if (s[i] < '0' || s[i] > '9')
+		if ((s[i] < '0' || s[i] > '9') && s[i] != '-' && s[i] != '+')
 			return (0);
 		i++;
 	}
@@ -133,4 +157,5 @@ int	ft_is_empty(char *s)
 	}
 	return (1);
 }
+
 

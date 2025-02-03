@@ -21,69 +21,17 @@ void    print_stack(t_stack *stack_a)
     // printf("\n");
     return;
 }
-int check_args(char *str)
+void    fill_stack(t_stack **stack, char **numbers)
 {
     int i;
 
     i = 0;
-    while (str[i])
-    {
-        if(!ft_isdigit(str[i]) && str[i] != ' ')
-            return 0;
-        i++;
-    }
-   return 1;
-}
-
-int count_args(int ac, char **av)
-{
-    int i;
-    int count;
-
-    i = 1;
-    count = 0;
-    while (i < ac)
-    {
-        count+= ft_count_words(av[i], ' ');
-        i++;
-    }
-    return (count);
-}
-
-void fill_numbers(int ac, char **av, char **numbers)
-{
-    int i;
-
-    i = 1;
-    while (i < ac)
-    {
-        if(ft_is_empty(av[i]))
-        {
-            free_all(numbers);
-            printf("Error: Empty argument\n");
-            exit(1);
-        }
-        ft_split(av[i], ' ', numbers);
-        i++;
-    }
-}
-
-int check_numbers(char **numbers)
-{
-    if(!numbers || !(*numbers))
-        return 0;
-    int i;
-
-    i = 0;
-    
     while (numbers[i])
     {
-        if (ft_isdigit1(numbers[i]) && (ft_atoi(numbers[i]) >= INT_MIN && ft_atoi(numbers[i]) <= __INT_MAX__))
-                i++;
-        else
-            return 0;
+        append(stack, ft_atoi(numbers[i]));
+        i++;
     }
-    return 1;
+
 }
 
 void free_all(char **numbers)
@@ -103,10 +51,11 @@ void free_all(char **numbers)
 }
 int main(int ac, char **av)
 {
-    // t_stack *stack_a;
-    // t_stack *stack_b;
+    t_stack *stack_a;
+    t_stack *stack_b;
     char **numbers;
     int count;
+    
 
     count = 0;
     if (ac < 3)
@@ -116,18 +65,21 @@ int main(int ac, char **av)
     fill_numbers(ac, av, numbers);
     if (!check_numbers(numbers))
         return (printf("ERROR: Invalid number"), free_all(numbers), 1);
-    int i = 0;
-    while (numbers[i])
-    {
-        printf("%s\n", numbers[i]);
-        i++;
-    }
+    // int i = 0;
+    // while (numbers[i])
+    // {
+    //     printf("%s\n", numbers[i]);
+    //     i++;
+    // }
     // free_all(numbers);
     
-    // stack_a = malloc((ac * sizeof(t_stack)) + 2);
-    // stack_b = malloc((ac * sizeof(t_stack)) + 2);
-    // if(!stack_a || !stack_b)
-    //     return (0);
+    stack_a = malloc(count * sizeof(t_stack));
+    stack_b = malloc(count * sizeof(t_stack));
+    if(!stack_a || !stack_b)
+        return (0);
+    stack_a = NULL;
+    stack_b = NULL;
+    fill_stack(&stack_a, numbers);
     // stack_a = NULL;
     // stack_b = NULL;
     // int i = 1;
@@ -137,7 +89,9 @@ int main(int ac, char **av)
     //     i++;
     // }
     //append(&stack_b, 8);
-    //print_stack(stack_a);
+    print_stack(stack_a);
+
+    // printf("%ld\n", LONG_MAX);
     // rotate_a(&stack_a);
     //push_a(&stack_b, &stack_a);
     // swap_a(&stack_a);
