@@ -11,7 +11,14 @@ int ft_strlen(char *str)
 	}
 	return len;
 }
-long	ft_atoi(char *str)
+
+void	atoi_clean(char **numbers)
+{
+	free_all(numbers);
+	printf("Error: Invalid number\n");
+    exit(1);
+}
+long	ft_atoi(char *str, char **numbers)
 {
 	long	nb;
 	int		sign;
@@ -20,11 +27,6 @@ long	ft_atoi(char *str)
 	nb = 0;
 	sign = 1;
 	i = 0;
-	if(ft_strlen(str) > 19 && str[i] != '0')
-	{
-		printf("Error: Number is too large\n");
-        exit(1);
-	}
 	while ((str[i] >= 9 && str[i] <= 13) || str[i] == 32)
 		i++;
 	if (str[i] == '-' || str[i] == '+')
@@ -35,19 +37,12 @@ long	ft_atoi(char *str)
 	}
 	while ((str[i] >= '0' && str[i] <= '9'))
 	{
-		nb = nb * 10 + str[i] - '0';
-		if (nb > LONG_MAX / 10 || (nb == LONG_MAX / 10 && (str[i] - '0') > LONG_MAX % 10))
-		{
-			printf("Error: Number is too large\n");
-        	exit(1);
-		}
-		i++;
+		nb = nb * 10 + str[i++] - '0';
+		if((nb > INT_MAX && sign == 1) || (sign == -1 && nb < INT_MIN))
+			atoi_clean(numbers);
 	}
-	if((str[i] == '-' || str[i] == '+') && nb == 0)
-	{
-		printf("Error: Invalid number\n");
-        exit(1);
-	}
+	if((str[i] == '-' || str[i] == '+') && (nb == 0 || ft_isdigit(str[i + 1]) || ft_isdigit(str[i - 1]) || str[i + 1] == '\0'))
+		atoi_clean(numbers);
 	nb = nb * sign;
 	return (nb);
 }
@@ -134,7 +129,7 @@ int	ft_isdigit(int c)
 	return (0);
 }
 
-int	ft_isdigit1(char *s)
+int	ft_isdigit_or_sign(char *s)
 {
 	int i = 0;
 	while (s[i])

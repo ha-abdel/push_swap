@@ -58,7 +58,8 @@ int check_numbers(char **numbers)
     
     while (numbers[i])
     {
-        if (ft_isdigit1(numbers[i])  && (ft_atoi(numbers[i]) >= INT_MIN && ft_atoi(numbers[i]) <= __INT_MAX__))
+        if (ft_isdigit_or_sign(numbers[i])  && (ft_atoi(numbers[i], numbers) >= INT_MIN 
+            && ft_atoi(numbers[i], numbers) <= __INT_MAX__)) 
                 i++;
         else
             return 0;
@@ -66,3 +67,16 @@ int check_numbers(char **numbers)
     return 1;
 }
 
+int check_dups(char **numbers, int nb)
+{
+    int i;
+
+    i = 0;
+    while (numbers[i])
+    {
+        if(nb == ft_atoi(numbers[i], numbers))
+            return 1;
+        i++;
+    }
+    return 0;
+}
