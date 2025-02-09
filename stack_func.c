@@ -58,7 +58,7 @@
 // 	// *head = second;
 // }
 
-void swap_a(t_stack **head)
+void swap_a(t_stack **head , t_data **data)
 {
     t_stack *first;
     t_stack *second;
@@ -85,7 +85,7 @@ void swap_a(t_stack **head)
 	(*head) = second;
 }
 
-void	swap_b(t_stack **head)
+void	swap_b(t_stack **head , t_data **data)
 {
 	t_stack *first;
     t_stack *second;
@@ -114,7 +114,7 @@ void	swap_b(t_stack **head)
 
 
 
-void	rotate_a(t_stack **head)
+void	rotate_a(t_stack **head , t_data **data)
 {
 	t_stack	*first;
 	t_stack	*last;
@@ -130,7 +130,7 @@ void	rotate_a(t_stack **head)
 	first->next = NULL;
 }
 
-void	rotate_b(t_stack **head)
+void	rotate_b(t_stack **head , t_data **data)
 {
 	t_stack	*first;
 	t_stack	*last;
@@ -146,7 +146,7 @@ void	rotate_b(t_stack **head)
 	first->next = NULL;
 }
 
-void	reverse_rotate_a(t_stack **head)
+void	reverse_rotate_a(t_stack **head , t_data **data)
 {
 	t_stack	*first;
 	t_stack	*last;
@@ -162,7 +162,7 @@ void	reverse_rotate_a(t_stack **head)
 	*head = last;
 }
 
-void	reverse_rotate_b(t_stack **head)
+void	reverse_rotate_b(t_stack **head , t_data **data)
 {
 	t_stack	*first;
 	t_stack	*last;
@@ -198,7 +198,7 @@ void	reverse_rotate_b(t_stack **head)
 // 		(*head)->prev = NULL;
 // }
 
-void push_a(t_stack **stack_a, t_stack **stack_b)
+void push_a(t_stack **stack_a, t_stack **stack_b , t_data **data)
 {
     t_stack *first_b;
     t_stack *second_b;
@@ -219,7 +219,7 @@ void push_a(t_stack **stack_a, t_stack **stack_b)
     *stack_a = first_b;
 }
 
-void push_b(t_stack **stack_b, t_stack **stack_a)
+void push_b(t_stack **stack_b, t_stack **stack_a , t_data **data)
 {
     t_stack *first_a;
     t_stack *second_a;
@@ -240,22 +240,22 @@ void push_b(t_stack **stack_b, t_stack **stack_a)
     *stack_b = first_a;
 }
 
-void	ss(t_stack **stack_a, t_stack **stack_b)
+void	ss(t_stack **stack_a, t_stack **stack_b , t_data **data)
 {
-	swap_a(stack_a);
-	swap_b(stack_b);
+	swap_a(stack_a, data);
+	swap_b(stack_b, data);
 }
 
-void	rr(t_stack **stack_a, t_stack **stack_b)
+void	rr(t_stack **stack_a, t_stack **stack_b , t_data **data)
 {
-	rotate_a(stack_a);
-	rotate_b(stack_b);
+	rotate_a(stack_a, data);
+	rotate_b(stack_b, data);
 }
 
-void	rrr(t_stack **stack_a, t_stack **stack_b)
+void	rrr(t_stack **stack_a, t_stack **stack_b , t_data **data)
 {
-	reverse_rotate_a(stack_a);
-	reverse_rotate_b(stack_b);
+	reverse_rotate_a(stack_a, data);
+	reverse_rotate_b(stack_b, data);
 }
 
 void	append(t_stack **head, int nb)
@@ -281,4 +281,38 @@ int	check_duplicte(t_stack *head, int value)
 		head = head->next;
 	}
 	return (0);
+}
+
+
+void    print_stack(t_stack *stack_a)
+{
+    while (stack_a)
+    {
+        printf("%d\n", stack_a->number);
+        stack_a = stack_a->next;
+    }
+    printf("==================================\n");
+    return;
+}
+void    fill_stack(t_stack **stack, char **numbers, int *size, t_data **data)
+{
+    int i;
+
+    i = 0;
+    (*size) = 0;
+    while (numbers[i])
+    {
+        if(check_duplicte(*stack, ft_atoi(numbers[i], numbers)))
+        {
+            free_all(numbers);
+            // free_stack(stack);
+			free_data(data);
+            printf("Error: Duplicates\n");
+            exit(1);
+        }
+        append(stack, ft_atoi(numbers[i], numbers));
+        i++;
+        (*size)++;
+    }
+
 }

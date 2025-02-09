@@ -1,6 +1,7 @@
 {
     "files.associations": {
-        "numbers": "c"
+        "numbers": "c",
+        "push_swap.h": "c"
     },
     "functionHeaderExtension.headerFilePath": "/home/abdel-ha/Desktop/push_swap_repo/push_swap.h"
 }

@@ -36,9 +36,15 @@ void free_stack(t_stack **stack)
 
 void free_data(t_data **data)
 {
+    if (!data ||!(*data))
+    {
+        return;
+    }
+
     free_stack(&((*data)->stack_a));
     free_stack(&((*data)->stack_b));
-    free((*data)->sorted);
+    if((*data)->sorted)
+        free((*data)->sorted);
     free(*data);
     
 }

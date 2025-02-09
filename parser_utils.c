@@ -30,7 +30,7 @@ int count_args(int ac, char **av)
     return (count);
 }
 
-void fill_numbers(int ac, char **av, char **numbers)
+void fill_numbers(int ac, char **av, char **numbers, t_data **data)
 {
     int i;
 
@@ -39,6 +39,7 @@ void fill_numbers(int ac, char **av, char **numbers)
     {
         if(ft_is_empty(av[i]))
         {
+            free_data(data);
             free_all(numbers);
             printf("Error: Empty argument\n");
             exit(1);
