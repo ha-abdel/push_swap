@@ -29,7 +29,7 @@ int get_mid(t_data *data, int *sorted)
     int mid_index;
     int mid;
 
-    mid_index = ((data->total_size - 5) / 2);
+    mid_index = ((data->total_size) / 2);
     mid = sorted[mid_index];
     return (mid);
 }

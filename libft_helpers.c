@@ -12,13 +12,14 @@ int ft_strlen(char *str)
 	return len;
 }
 
-void	atoi_clean(char **numbers)
+void	atoi_clean(char **numbers, t_data **data)
 {
 	free_all(numbers);
+	free(data);
 	printf("Error: Invalid number\n");
     exit(1);
 }
-long	ft_atoi(char *str, char **numbers)
+long	ft_atoi(char *str, char **numbers, t_data **data)
 {
 	long	nb;
 	int		sign;
@@ -39,10 +40,10 @@ long	ft_atoi(char *str, char **numbers)
 	{
 		nb = nb * 10 + str[i++] - '0';
 		if((nb > INT_MAX && sign == 1) || (sign == -1 && nb < INT_MIN))
-			atoi_clean(numbers);
+			atoi_clean(numbers, data);
 	}
 	if((str[i] == '-' || str[i] == '+') && (nb == 0 || ft_isdigit(str[i + 1]) || ft_isdigit(str[i - 1]) || str[i + 1] == '\0'))
-		atoi_clean(numbers);
+		atoi_clean(numbers, data);
 	nb = nb * sign;
 	return (nb);
 }
@@ -136,6 +137,8 @@ int	ft_isdigit_or_sign(char *s)
 	{
 		if ((s[i] < '0' || s[i] > '9') && s[i] != '-' && s[i] != '+')
 			return (0);
+		if((s[i] == '-' || s[i] == '+') && (i != 0 || !ft_isdigit(s[i + 1])))
+		    return (0);
 		i++;
 	}
 	return (1);

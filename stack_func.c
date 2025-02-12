@@ -1,62 +1,20 @@
 #include "push_swap.h"
 
-// void	swap_a(t_stack **head)
-// {
-// 	t_stack	*first;
-// 	t_stack	*second;
-// 	t_stack	*third;
+t_moves	*ft_new_move(char *move)
+{
+	t_moves	*l;
 
-
-// 	if (!head || !*head || !(*head)->next)
-// 		return ;
-	
-// 	// first = (*head)->next;
-// 	// second = (*head)->next->next;
-// 	// second = *head;
-// 	// (*head)->next = second;
-// 	// (*head)->prev = first;
-// 	// first->prev = NULL;
-// 	// *head = first;
-
-// 	//=====================
-// 	first = *head;
-// 	second = first->next;
-// 	third = second->next;
-// 	first->next = third;
-// 	third->prev = first;
-// 	first->prev = second;
-// 	second->next = first;
-// 	second->prev = NULL;
-// 	(*head) = second;
-// 	//===========================================
-
-
-//     // t_stack *first;
-//     // t_stack *second;
-
-//     // if (!head || !*head || !(*head)->next)
-//     //     return;
-
-//     // // Let's denote:
-//     // // A = *head, B = A->next, C = B->next
-//     // first = *head;
-//     // second = first->next;
-
-//     // // Update the head to the second node.
-//     // *head = second;
-//     // second->prev = NULL;
-
-//     // // Set first's new next to be C.
-//     // first->next = second->next;
-//     // if (second->next)
-//     //     second->next->prev = first;
-
-//     // // Place first after second.
-//     // second->next = first;
-//     // first->prev = second;
-
-// 	// *head = second;
-// }
+	l = (t_moves *)malloc(sizeof(t_moves));
+	if (!l)
+		return (NULL);
+	l->move = move;
+	return (l);
+}
+void append_move(t_data **data, char *move)
+{
+    t_moves *m = ft_new_move(move);
+    lst_add_move_back(&(*data)->moves, m);
+}
 
 void swap_a(t_stack **head , t_data **data)
 {
@@ -83,6 +41,8 @@ void swap_a(t_stack **head , t_data **data)
         third->prev = first;
 	}
 	(*head) = second;
+    append_move(data, "sa\n");
+    // write(1, "sa\n", 3);
 }
 
 void	swap_b(t_stack **head , t_data **data)
@@ -110,6 +70,8 @@ void	swap_b(t_stack **head , t_data **data)
         third->prev = first;
 	}
 	(*head) = second;
+    append_move(data, "sb\n");
+    // write(1, "sb\n", 3);
 }
 
 
@@ -128,6 +90,8 @@ void	rotate_a(t_stack **head , t_data **data)
 	last->next = first;
 	first->prev = last;
 	first->next = NULL;
+    // write(1, "ra\n", 3);
+    append_move(data, "ra\n");
 }
 
 void	rotate_b(t_stack **head , t_data **data)
@@ -144,6 +108,8 @@ void	rotate_b(t_stack **head , t_data **data)
 	last->next = first;
 	first->prev = last;
 	first->next = NULL;
+    // write(1, "rb\n", 3);
+    append_move(data, "rb\n");
 }
 
 void	reverse_rotate_a(t_stack **head , t_data **data)
@@ -160,6 +126,8 @@ void	reverse_rotate_a(t_stack **head , t_data **data)
 	last->next = first;
 	last->prev = NULL;
 	*head = last;
+    // write(1, "rra\n", 4);
+    append_move(data, "rra\n");
 }
 
 void	reverse_rotate_b(t_stack **head , t_data **data)
@@ -176,6 +144,8 @@ void	reverse_rotate_b(t_stack **head , t_data **data)
 	last->next = first;
 	last->prev = NULL;
 	*head = last;
+    // write(1, "rrb\n", 4);
+    append_move(data, "rrb\n");
 }
 
 // void	push_a(t_stack **head, t_stack **to_push)
@@ -217,6 +187,8 @@ void push_a(t_stack **stack_a, t_stack **stack_b , t_data **data)
     first_b->next = *stack_a;
     first_b->prev = NULL;
     *stack_a = first_b;
+    // write(1, "pa\n", 3);
+    append_move(data, "pa\n");
 }
 
 void push_b(t_stack **stack_b, t_stack **stack_a , t_data **data)
@@ -238,24 +210,32 @@ void push_b(t_stack **stack_b, t_stack **stack_a , t_data **data)
     first_a->next = *stack_b;
     first_a->prev = NULL;
     *stack_b = first_a;
+    // write(1, "pb\n", 3);
+    append_move(data, "pb\n");
 }
 
 void	ss(t_stack **stack_a, t_stack **stack_b , t_data **data)
 {
 	swap_a(stack_a, data);
 	swap_b(stack_b, data);
+    // write(1, "ss\n", 3);
+    append_move(data, "ss\n");
 }
 
 void	rr(t_stack **stack_a, t_stack **stack_b , t_data **data)
 {
 	rotate_a(stack_a, data);
 	rotate_b(stack_b, data);
+    // write(1, "rr\n", 3);
+    append_move(data, "rr\n");
 }
 
 void	rrr(t_stack **stack_a, t_stack **stack_b , t_data **data)
 {
 	reverse_rotate_a(stack_a, data);
 	reverse_rotate_b(stack_b, data);
+    // write(1, "rrr\n", 4);
+    append_move(data, "rrr\n");
 }
 
 void	append(t_stack **head, int nb)
@@ -302,15 +282,14 @@ void    fill_stack(t_stack **stack, char **numbers, int *size, t_data **data)
     (*size) = 0;
     while (numbers[i])
     {
-        if(check_duplicte(*stack, ft_atoi(numbers[i], numbers)))
+        if(check_duplicte(*stack, ft_atoi(numbers[i], numbers,data)))
         {
             free_all(numbers);
-            // free_stack(stack);
 			free_data(data);
             printf("Error: Duplicates\n");
             exit(1);
         }
-        append(stack, ft_atoi(numbers[i], numbers));
+        append(stack, ft_atoi(numbers[i], numbers, data));
         i++;
         (*size)++;
     }

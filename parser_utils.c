@@ -49,7 +49,7 @@ void fill_numbers(int ac, char **av, char **numbers, t_data **data)
     }
 }
 
-int check_numbers(char **numbers)
+int check_numbers(char **numbers, t_data **data)
 {
     if(!numbers || !(*numbers))
         return 0;
@@ -59,8 +59,8 @@ int check_numbers(char **numbers)
     
     while (numbers[i])
     {
-        if (ft_isdigit_or_sign(numbers[i])  && (ft_atoi(numbers[i], numbers) >= INT_MIN 
-            && ft_atoi(numbers[i], numbers) <= __INT_MAX__)) 
+        if (ft_isdigit_or_sign(numbers[i])  && (ft_atoi(numbers[i], numbers, data) >= INT_MIN 
+            && ft_atoi(numbers[i], numbers, data) <= __INT_MAX__)) 
                 i++;
         else
             return 0;
@@ -68,16 +68,16 @@ int check_numbers(char **numbers)
     return 1;
 }
 
-int check_dups(char **numbers, int nb)
-{
-    int i;
+// int check_dups(char **numbers, int nb)
+// {
+//     int i;
 
-    i = 0;
-    while (numbers[i])
-    {
-        if(nb == ft_atoi(numbers[i], numbers))
-            return 1;
-        i++;
-    }
-    return 0;
-}
+//     i = 0;
+//     while (numbers[i])
+//     {
+//         if(nb == ft_atoi(numbers[i], numbers))
+//             return 1;
+//         i++;
+//     }
+//     return 0;
+// }

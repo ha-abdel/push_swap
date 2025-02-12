@@ -9,10 +9,14 @@
 #include "limits.h"
 
 
+
+
+
 typedef struct s_moves
 {
     char *move;
     struct s_moves *next;
+    struct s_moves *prev;
 } t_moves;
 
 typedef struct s_stack
@@ -24,12 +28,22 @@ typedef struct s_stack
     int target;
 } t_stack;
 
+typedef struct s_vars
+{
+    int a;
+    int b;
+    int c;
+    int d;
+    int e;
+} t_vars;
+
 typedef struct s_data
 {
     t_stack *stack_a;
     t_stack *stack_b;
     t_moves *moves;
     int *sorted;
+    t_vars vars;
     int top_five[5];
     int total_size;
     int mid;
@@ -43,6 +57,8 @@ t_stack	*ft_lstnew(int nb);
 t_stack *lst_last(t_stack **head);
 
 void    lst_add_back(t_stack **head, t_stack *new);
+
+void    lst_add__move_back(t_stack **head, t_moves *new);
 
 void lst_add_front(t_stack **head, t_stack *new);
 
@@ -67,7 +83,7 @@ void push_b(t_stack **stack_b, t_stack **stack_a, t_data **data);
 
 int check_duplicte(t_stack *head, int value);
 
-long	ft_atoi(char *str, char **numbers);
+long	ft_atoi(char *str, char **numbers, t_data **data);
 
 size_t	ft_count_words(char *s, char c);
 
@@ -91,7 +107,7 @@ void    ft_split(char *s, char c, char **arr);
 
 void fill_numbers(int ac, char **av, char **numbers, t_data **data);
 
-int check_numbers(char **numbers);
+int check_numbers(char **numbers, t_data **data);
 
 int check_dups(char **numbers, int nb);
 
@@ -107,6 +123,11 @@ void    sort_helper(int **arr, int size);
 
 
 /* FUNCTIONS */
+void    lst_add_move_back(t_moves **head, t_moves *new);
+t_moves *lst_last_move(t_moves **head);
+void	sort_five(t_data **data, t_stack **stack);
+void	sort_four(t_data **data, t_stack **stack);
+void	sort_three(t_data **data, t_stack **stack);
 int is_it_top_five(t_data **data, int value);
 int get_node_index_by_value(t_data **data, int value);
 void    print_stack(t_stack *stack_a);

@@ -4,7 +4,9 @@ void sort_array(t_data **data)
 {
     t_stack *stack;
     int i;
+    t_stack *head;
 
+    head = (*data)->stack_a;
     (*data)->sorted = malloc(sizeof(int) * ((*data)->total_size));
     stack = (*data)->stack_a;
     if(!(*data)->sorted)
@@ -19,13 +21,14 @@ void sort_array(t_data **data)
         stack = stack->next;
         i++;
     }
+    (*data)->stack_a = head;
     sort_helper(&((*data)->sorted), i);
-    i = 0;
-    while (i < 5)
-    {
-        (*data)->top_five[i] = (*data)->sorted[(*data)->total_size - i - 1];
-        i++;
-    }
+    // i = 0;
+    // while (i < 5)
+    // {
+    //     (*data)->top_five[i] = (*data)->sorted[(*data)->total_size - i - 1];
+    //     i++;
+    // }
 }
 
 void    sort_helper(int **arr, int size)
