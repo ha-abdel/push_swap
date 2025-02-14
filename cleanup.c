@@ -1,6 +1,6 @@
 #include "push_swap.h"
 
-void free_all(char **numbers)
+void free_numbers(char **numbers)
 {
     int i = 0;
 
@@ -47,4 +47,12 @@ void free_data(t_data **data)
         free((*data)->sorted);
     free(*data);
     
+}
+
+void	atoi_clean(char **numbers, t_data **data)
+{
+	free_numbers(numbers);
+	free(data);
+	printf("Error: Invalid number\n");
+    exit(1);
 }

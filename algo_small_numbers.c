@@ -37,9 +37,9 @@ void	sort_three(t_data **data, t_stack **stack)
 		&& (*stack)->next->number > (*stack)->next->next->number)
 	{
 		if ((*stack)->number > (*stack)->next->next->number)
-			(swap_a(stack, data)), (rotate_a(stack, data)), (swap_a(stack, data));
+			(rotate_a(stack, data));
 		else
-			(swap_a(stack, data)), (rotate_a(stack, data));
+			(rotate_a(stack, data)), (swap_a(stack, data));
 	}
 	else if ((*stack)->next->next->number > (*stack)->number
 		&& (*stack)->next->next->number > (*stack)->next->number)

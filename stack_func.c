@@ -25,6 +25,7 @@ void swap_a(t_stack **head , t_data **data)
     if (!head || !*head || !(*head)->next)
         return;
 
+    // (void)data;
     first = *head;
     second = first->next;
     third = second->next;
@@ -54,6 +55,7 @@ void	swap_b(t_stack **head , t_data **data)
     if (!head || !*head || !(*head)->next)
         return;
 
+    // (void)data;
     first = *head;
     second = first->next;
     third = second->next;
@@ -83,7 +85,8 @@ void	rotate_a(t_stack **head , t_data **data)
 
 	if (!head || !*head || !(*head)->next)
 		return ;
-	first = *head;
+	// (void)data;
+    first = *head;
 	last = lst_last(head);
 	*head = first->next;
 	(*head)->prev = NULL;
@@ -101,7 +104,8 @@ void	rotate_b(t_stack **head , t_data **data)
 
 	if (!head || !*head || !(*head)->next)
 		return ;
-	first = *head;
+	// (void)data;
+    first = *head;
 	last = lst_last(head);
 	*head = first->next;
 	(*head)->prev = NULL;
@@ -119,7 +123,8 @@ void	reverse_rotate_a(t_stack **head , t_data **data)
 
 	if (!head || !*head || !(*head)->next)
 		return ;
-	first = *head;
+	// (void)data;
+    first = *head;
 	last = lst_last(head);
 	last->prev->next = NULL;
 	first->prev = last;
@@ -137,7 +142,8 @@ void	reverse_rotate_b(t_stack **head , t_data **data)
 
 	if (!head || !*head || !(*head)->next)
 		return ;
-	first = *head;
+	// (void)data;
+    first = *head;
 	last = lst_last(head);
 	last->prev->next = NULL;
 	first->prev = last;
@@ -175,6 +181,7 @@ void push_a(t_stack **stack_a, t_stack **stack_b , t_data **data)
     
     if (!stack_b || !*stack_b)
         return;
+    // (void)data;
     first_b = *stack_b;
     second_b = first_b->next;
 
@@ -198,6 +205,7 @@ void push_b(t_stack **stack_b, t_stack **stack_a , t_data **data)
     
     if (!stack_a || !*stack_a)
         return;
+    // (void)data;
     first_a = *stack_a;
     second_a = first_a->next;
     
@@ -248,6 +256,7 @@ void	append(t_stack **head, int nb)
 	if (!new)
 		return ;
 	new->number = nb;
+    new->index = 0;
 	lst_add_back(head, new);
 
 }
@@ -274,6 +283,17 @@ void    print_stack(t_stack *stack_a)
     printf("==================================\n");
     return;
 }
+
+void    print_stack_with_index(t_stack *stack_a)
+{
+    while (stack_a)
+    {
+        printf("%d    %d\n", stack_a->number, stack_a->index);
+        stack_a = stack_a->next;
+    }
+    printf("==================================\n");
+    return;
+}
 void    fill_stack(t_stack **stack, char **numbers, int *size, t_data **data)
 {
     int i;
@@ -284,7 +304,7 @@ void    fill_stack(t_stack **stack, char **numbers, int *size, t_data **data)
     {
         if(check_duplicte(*stack, ft_atoi(numbers[i], numbers,data)))
         {
-            free_all(numbers);
+            free_numbers(numbers);
 			free_data(data);
             printf("Error: Duplicates\n");
             exit(1);
@@ -294,4 +314,15 @@ void    fill_stack(t_stack **stack, char **numbers, int *size, t_data **data)
         (*size)++;
     }
 
+}
+
+void    print_moves(t_moves *moves)
+{
+    while (moves)
+    {
+        printf("%s", moves->move);
+        moves = moves->next;
+    }
+    // printf("==================================\n");
+    return;
 }

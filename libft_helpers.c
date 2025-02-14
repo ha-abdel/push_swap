@@ -12,13 +12,7 @@ int ft_strlen(char *str)
 	return len;
 }
 
-void	atoi_clean(char **numbers, t_data **data)
-{
-	free_all(numbers);
-	free(data);
-	printf("Error: Invalid number\n");
-    exit(1);
-}
+
 long	ft_atoi(char *str, char **numbers, t_data **data)
 {
 	long	nb;
@@ -123,37 +117,5 @@ void	ft_split(char *s, char c, char **arr)
 	// return (arr + i);
 }
 
-int	ft_isdigit(int c)
-{
-	if (c >= '0' && c <= '9')
-		return (1);
-	return (0);
-}
-
-int	ft_isdigit_or_sign(char *s)
-{
-	int i = 0;
-	while (s[i])
-	{
-		if ((s[i] < '0' || s[i] > '9') && s[i] != '-' && s[i] != '+')
-			return (0);
-		if((s[i] == '-' || s[i] == '+') && (i != 0 || !ft_isdigit(s[i + 1])))
-		    return (0);
-		i++;
-	}
-	return (1);
-}
-
-int	ft_is_empty(char *s)
-{
-	int i = 0;
-	while (s[i])
-	{
-		if (s[i] != ' ')
-			return (0);
-		i++;
-	}
-	return (1);
-}
 
 

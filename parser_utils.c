@@ -40,7 +40,7 @@ void fill_numbers(int ac, char **av, char **numbers, t_data **data)
         if(ft_is_empty(av[i]))
         {
             free_data(data);
-            free_all(numbers);
+            free_numbers(numbers);
             printf("Error: Empty argument\n");
             exit(1);
         }
@@ -67,17 +67,3 @@ int check_numbers(char **numbers, t_data **data)
     }
     return 1;
 }
-
-// int check_dups(char **numbers, int nb)
-// {
-//     int i;
-
-//     i = 0;
-//     while (numbers[i])
-//     {
-//         if(nb == ft_atoi(numbers[i], numbers))
-//             return 1;
-//         i++;
-//     }
-//     return 0;
-// }
