@@ -6,25 +6,12 @@
 /*   By: abdel-ha <abdel-ha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 14:04:23 by abdel-ha          #+#    #+#             */
-/*   Updated: 2025/02/14 15:16:19 by abdel-ha         ###   ########.fr       */
+/*   Updated: 2025/02/17 15:47:46 by abdel-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-
-// int	ft_strlen(char *s)
-// {
-// 	int	i;
-
-// 	i = 0;
-// 	if (!s)
-// 		return (0);
-// 	while (s[i])
-// 	{
-// 		i++;
-// 	}
-// 	return (i);
-// }
+#include "push_swap.h"
 
 void	*ft_calloc(size_t count, size_t size)
 {
@@ -126,5 +113,5 @@ char	*get_next_line(int fd)
 	}
 	if (!line && (!leftover || *leftover == '\0'))
 		return (NULL);
-	return (line);
+	return (free(leftover), leftover = NULL, line);
 }

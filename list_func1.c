@@ -1,58 +1,70 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   list_func1.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: abdel-ha <abdel-ha@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/02/17 11:35:43 by abdel-ha          #+#    #+#             */
+/*   Updated: 2025/02/17 11:36:11 by abdel-ha         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
-t_moves *lst_last_move(t_moves **head)
+t_moves	*lst_last_move(t_moves **head)
 {
-    t_moves *current = *head;
+	t_moves	*current;
 
-    if (!current)
-        return NULL;
-
-    while (current->next)
-        current = current->next;
-
-    return current;
-}
-void    lst_add_move_back(t_moves **head, t_moves *new)
-{
-    t_moves *last;
-    if(!head || !new)
-        return;
-    if(!*head)
-    {
-        *head = new;
-        new->prev = NULL;
-        new->next = NULL;
-        return;
-    }
-    last = lst_last_move(head);
-    last->next = new;
-    new->prev = last;
-    new->next = NULL;
+	current = *head;
+	if (!current)
+		return (NULL);
+	while (current->next)
+		current = current->next;
+	return (current);
 }
 
-
-void    lst_delete(t_stack **head, t_stack *node)
+void	lst_add_move_back(t_moves **head, t_moves *new)
 {
-    if(!head ||!node)
-        return;
-    if(node->prev)
-        node->prev->next = node->next;
-    else
-        *head = node->next;
-    if(node->next)
-        node->next->prev = node->prev;
-    free(node);
+	t_moves	*last;
+
+	if (!head || !new)
+		return ;
+	if (!*head)
+	{
+		*head = new;
+		new->prev = NULL;
+		new->next = NULL;
+		return ;
+	}
+	last = lst_last_move(head);
+	last->next = new;
+	new->prev = last;
+	new->next = NULL;
 }
 
-int count_stack(t_stack *stack)
+void	lst_delete(t_stack **head, t_stack *node)
 {
-    int count;
+	if (!head || !node)
+		return ;
+	if (node->prev)
+		node->prev->next = node->next;
+	else
+		*head = node->next;
+	if (node->next)
+		node->next->prev = node->prev;
+	free(node);
+}
 
-    count = 0;
-    while (stack)
-    {
-        count++;
-        stack = stack->next;
-    }
-    return (count);
+int	count_stack(t_stack *stack)
+{
+	int	count;
+
+	count = 0;
+	while (stack)
+	{
+		count++;
+		stack = stack->next;
+	}
+	return (count);
 }

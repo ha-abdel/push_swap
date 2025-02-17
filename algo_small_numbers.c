@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   algo_small_numbers.c                               :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: abdel-ha <abdel-ha@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/02/17 11:20:20 by abdel-ha          #+#    #+#             */
+/*   Updated: 2025/02/17 11:21:15 by abdel-ha         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 void	init_vars(t_data **data, t_stack **stack)
@@ -77,14 +89,16 @@ void	sort_four(t_data **data, t_stack **stack)
 		(push_a(stack, &(*data)->stack_b, data)), (swap_a(stack, data));
 	else
 	{
-		(reverse_rotate_a(stack, data)), (push_a(stack, &(*data)->stack_b, data));
-		rotate_a(stack, data), rotate_a(stack, data);
+		(reverse_rotate_a(stack, data)), (push_a(stack, &(*data)->stack_b,
+				data));
+		rotate_a(stack, data);
+		rotate_a(stack, data);
 	}
 }
 
 void	sort_five(t_data **data, t_stack **stack)
 {
-	int x;
+	int	x;
 
 	push_b(&(*data)->stack_b, stack, data);
 	sort_four(data, stack);
@@ -104,7 +118,8 @@ void	sort_five(t_data **data, t_stack **stack)
 	}
 	else
 	{
-		(reverse_rotate_a(stack, data)), (push_a(stack, &(*data)->stack_b, data));
+		(reverse_rotate_a(stack, data)), (push_a(stack, &(*data)->stack_b,
+				data));
 		(rotate_a(stack, data)), (rotate_a(stack, data));
 	}
 }

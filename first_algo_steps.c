@@ -1,72 +1,40 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   first_algo_steps.c                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: abdel-ha <abdel-ha@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/02/17 11:27:20 by abdel-ha          #+#    #+#             */
+/*   Updated: 2025/02/17 12:37:29 by abdel-ha         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
-
-// void push_rev_rotate_mid(t_data **data)
-// {
-//     while ((*data)->stack_a)
-//     {
-//         if ((*data)->stack_a->number == (*data)->mid)
-//         {
-//            push_b(&((*data)->stack_b), &((*data)->stack_a), data);
-//            break ;
-//         }
-//         reverse_rotate_a(&((*data)->stack_a), data);
-//     }
-// }
-
-
 
 void	push_all_to_stack_b(t_data **data)
 {
-	int	i;
+	int	nb_pushed;
 
-	i = 0;
+	nb_pushed = 0;
 	while ((*data)->stack_a)
 	{
-		if ((*data)->stack_a->index <= i)
+		if ((*data)->stack_a->index <= nb_pushed)
 		{
 			push_b(&((*data)->stack_b), &((*data)->stack_a), data);
 			rotate_b(&((*data)->stack_b), data);
-			i++;
+			nb_pushed++;
 		}
-		else if ((*data)->stack_a->index <= (i + (*data)->range))
+		else if ((*data)->stack_a->index <= (nb_pushed + (*data)->range))
 		{
 			push_b(&((*data)->stack_b), &((*data)->stack_a), data);
-			i++;
+			nb_pushed++;
 		}
-		else if ((*data)->stack_a->index > (i + (*data)->range))
-			skip_out_of_range(data, i + (*data)->range);
+		else if ((*data)->stack_a->index > (nb_pushed + (*data)->range))
+			skip_out_of_range(data, nb_pushed + (*data)->range);
 	}
 }
 
-// void push_all_to_stack_b(t_data **data)
-// {
-//     int i = 0;
-//     int size;
-//     int range = (*data)->range;
-
-//     while ((*data)->stack_a)
-//     {
-//         size = count_stack((*data)->stack_a);
-//         if ((*data)->stack_a->index <= i)
-//         {
-//             push_b(&((*data)->stack_b), &((*data)->stack_a), data);
-//             rotate_b(&((*data)->stack_b), data);
-//             i++;
-//         }
-//         else if ((*data)->stack_a->index <= (i + range))
-//         {
-//             push_b(&((*data)->stack_b), &((*data)->stack_a), data);
-//             i++;
-//         }
-//         else
-//         {
-//             if (i < (size / 2) - 1)
-//                 rotate_a(&((*data)->stack_a), data);
-//             else
-//                 reverse_rotate_a(&((*data)->stack_a), data);
-//         }
-//     }
-// }
 void	push_all_to_stack_a(t_data **data)
 {
 	t_stack	*node;
@@ -96,43 +64,11 @@ void	push_all_to_stack_a(t_data **data)
 	}
 }
 
-// void push_rest(t_data **data)
-// {
-//     int i = 0;
-//     while ((*data)->stack_a && i < (*data)->total_size)
-//     {
-//         if(is_it_top_five(data, (*data)->stack_a->number))
-//             rotate_a(&((*data)->stack_a), data);
-//         else if ((*data)->stack_a->number < (*data)->mid)
-//         {
-//             push_b(&((*data)->stack_b), &((*data)->stack_a), data);
-//             rotate_b(&((*data)->stack_b), data);
-//         }
-//         else if ((*data)->stack_a->number > (*data)->mid)
-//         {
-//             push_b(&((*data)->stack_b), &((*data)->stack_a), data);
-//         }
-//         i++;
-//     }
-// }
-// void push_rotate_mid(t_data **data)
-// {
-//     while ((*data)->stack_a)
-//     {
-//         if ((*data)->stack_a->number == (*data)->mid)
-//         {
-//            push_b(&((*data)->stack_b), &((*data)->stack_a), data);
-//            break ;
-//         }
-//         rotate_a(&((*data)->stack_a), data);
-//     }
-// }
-
 void	skip_out_of_range(t_data **data, int range)
 {
-	int index;
-	int mid_index;
-	t_stack *node;
+	int		index;
+	int		mid_index;
+	t_stack	*node;
 
 	node = (*data)->stack_a;
 	while (node)
@@ -149,7 +85,7 @@ void	skip_out_of_range(t_data **data, int range)
 			else
 			{
 				repeat_n_rev_rotate(data, &((*data)->stack_a),
-				count_stack((*data)->stack_a) - index);
+					count_stack((*data)->stack_a) - index);
 			}
 			return ;
 		}

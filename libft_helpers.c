@@ -1,17 +1,28 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   libft_helpers.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: abdel-ha <abdel-ha@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/02/17 11:32:47 by abdel-ha          #+#    #+#             */
+/*   Updated: 2025/02/17 11:32:48 by abdel-ha         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
-int ft_strlen(char *str)
+int	ft_strlen(char *str)
 {
-	int len;
+	int	len;
 
 	len = 0;
 	while (str[len] != '\0')
 	{
 		len++;
 	}
-	return len;
+	return (len);
 }
-
 
 long	ft_atoi(char *str, char **numbers, t_data **data)
 {
@@ -33,13 +44,13 @@ long	ft_atoi(char *str, char **numbers, t_data **data)
 	while ((str[i] >= '0' && str[i] <= '9'))
 	{
 		nb = nb * 10 + str[i++] - '0';
-		if((nb > INT_MAX && sign == 1) || (sign == -1 && nb < INT_MIN))
+		if ((nb > INT_MAX && sign == 1) || (sign == -1 && nb < INT_MIN))
 			atoi_clean(numbers, data);
 	}
-	if((str[i] == '-' || str[i] == '+') && (nb == 0 || ft_isdigit(str[i + 1]) || ft_isdigit(str[i - 1]) || str[i + 1] == '\0'))
+	if ((str[i] == '-' || str[i] == '+') && (nb == 0 || ft_isdigit(str[i + 1])
+			|| ft_isdigit(str[i - 1]) || str[i + 1] == '\0'))
 		atoi_clean(numbers, data);
-	nb = nb * sign;
-	return (nb);
+	return (nb * sign);
 }
 
 char	*ft_checksep(const char *s, char c, int *index)
@@ -94,9 +105,10 @@ size_t	ft_count_words(char *s, char c)
 void	ft_split(char *s, char c, char **arr)
 {
 	static size_t	i;
-	int		index;
-	size_t count = 0;
+	int				index;
+	size_t			count;
 
+	count = 0;
 	if (!s)
 		return ;
 	index = 0;
@@ -114,8 +126,4 @@ void	ft_split(char *s, char c, char **arr)
 		count++;
 	}
 	arr[i] = NULL;
-	// return (arr + i);
 }
-
-
-
