@@ -35,6 +35,13 @@ void fill_numbers(int ac, char **av, char **numbers, t_data **data)
     int i;
 
     i = 1;
+    if(ac == 1)
+    {
+        free_data(data);
+        free_numbers(numbers);
+        printf("Error: No arguments\n");
+        exit(1);
+    }
     while (i < ac)
     {
         if(ft_is_empty(av[i]))
@@ -56,7 +63,6 @@ int check_numbers(char **numbers, t_data **data)
     int i;
 
     i = 0;
-    
     while (numbers[i])
     {
         if (ft_isdigit_or_sign(numbers[i])  && (ft_atoi(numbers[i], numbers, data) >= INT_MIN 

@@ -23,25 +23,31 @@ int is_sorted(t_stack *stack)
     return 1;
 }
 
-void check_after(t_data **data)
+void check_after(t_data **data, char **numbers)
 {
     if (is_sorted((*data)->stack_a) && !(*data)->stack_b)
     {
         printf("OK\n");
-        exit(0);
+        return;
+        // exit(0);
     }
     else
     {
         printf("KO\n");
+        clean_all(data, numbers);
         exit(1);
     }
 }
 
-void check_before(t_data **data)
+void check_before(t_data **data, char **numbers)
 {
     if (is_sorted((*data)->stack_a))
     {
-        printf("OK\n");
+        // printf("OK\n");
+        // free_data(data);
+        // free_numbers(numbers);
+        clean_all(data, numbers);
+        // return;
         exit(0);
     }
 }

@@ -6,25 +6,25 @@
 /*   By: abdel-ha <abdel-ha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 14:04:23 by abdel-ha          #+#    #+#             */
-/*   Updated: 2024/12/03 09:50:21 by abdel-ha         ###   ########.fr       */
+/*   Updated: 2025/02/14 15:16:19 by abdel-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-int	ft_strlen(char *s)
-{
-	int	i;
+// int	ft_strlen(char *s)
+// {
+// 	int	i;
 
-	i = 0;
-	if (!s)
-		return (0);
-	while (s[i])
-	{
-		i++;
-	}
-	return (i);
-}
+// 	i = 0;
+// 	if (!s)
+// 		return (0);
+// 	while (s[i])
+// 	{
+// 		i++;
+// 	}
+// 	return (i);
+// }
 
 void	*ft_calloc(size_t count, size_t size)
 {

@@ -26,29 +26,28 @@ void assign_indexes(t_data **data)
     }
 }
 
-void    push_swap(t_data **data, int count)
+void    push_swap(t_data **data, int count, char **numbers)
 {
-    if(count == 3)
+    if(count == 1)
     {
+        clean_all(data, numbers);
+        exit(1);
+    }
+    else if(count == 2)
+        sort_two(data, &(*data)->stack_a);
+    else if(count == 3)
         sort_three(data, &(*data)->stack_a);
-        return;
-    }
     else if(count == 4)
-    {
         sort_four(data, &(*data)->stack_a);
-        return;
-    }
     else if(count == 5)
-    {
         sort_five(data, &(*data)->stack_a);
-        return;
+    else
+    {
+        assign_indexes(data);
+        push_all_to_stack_b(data);
+        push_all_to_stack_a(data);
     }
-    assign_indexes(data);
-
-    push_all_to_stack_b(data);
-    push_all_to_stack_a(data);
-    // print_stack((*data)->stack_a);
-    // get_target_from_b()
+    
 }
 
 int get_mid(t_data *data, int *sorted)

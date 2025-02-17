@@ -1,3 +1,21 @@
 {
-    "functionHeaderExtension.headerFilePath": "/home/abdel-ha/Desktop/push_swap_repo/push_swap.h"
+    "functionHeaderExtension.headerFilePath": "/home/abdel-ha/Desktop/push_swap_repo/push_swap.h",
+    "files.associations": {
+        "push_swap.h": "c",
+        "cstdlib": "cpp",
+        "cassert": "cpp",
+        "climits": "cpp",
+        "cmath": "cpp",
+        "compare": "cpp",
+        "concepts": "cpp",
+        "cstdarg": "cpp",
+        "cstddef": "cpp",
+        "cstdio": "cpp",
+        "type_traits": "cpp",
+        "limits": "cpp",
+        "new": "cpp",
+        "*.tcc": "cpp",
+        "cstdint": "cpp",
+        "typeinfo": "cpp"
+    }
 }

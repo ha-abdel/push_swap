@@ -23,6 +23,16 @@ void	init_vars(t_data **data, t_stack **stack)
 		return ;
 }
 
+void	sort_two(t_data **data, t_stack **stack)
+{
+	if ((*stack)->number > (*stack)->next->number)
+	{
+		(swap_a(stack, data));
+	}
+	else
+		return ;
+}
+
 void	sort_three(t_data **data, t_stack **stack)
 {
 	if ((*stack)->number > (*stack)->next->number
@@ -37,9 +47,9 @@ void	sort_three(t_data **data, t_stack **stack)
 		&& (*stack)->next->number > (*stack)->next->next->number)
 	{
 		if ((*stack)->number > (*stack)->next->next->number)
-			(rotate_a(stack, data));
+			(rotate_a(stack, data)), (rotate_a(stack, data));
 		else
-			(rotate_a(stack, data)), (swap_a(stack, data));
+			(reverse_rotate_a(stack, data)), (swap_a(stack, data));
 	}
 	else if ((*stack)->next->next->number > (*stack)->number
 		&& (*stack)->next->next->number > (*stack)->next->number)
@@ -61,14 +71,14 @@ void	sort_four(t_data **data, t_stack **stack)
 		push_a(stack, &(*data)->stack_b, data);
 	else if (x > (*data)->vars.c)
 	{
-		(push_a(stack, &(*data)->stack_b, data)), (rotate_a(stack, data));
+		(push_a(stack, &((*data)->stack_b), data)), (rotate_a(stack, data));
 	}
 	else if (x > (*data)->vars.a && x < (*data)->vars.b)
 		(push_a(stack, &(*data)->stack_b, data)), (swap_a(stack, data));
 	else
 	{
-		(rotate_a(stack, data)), (push_a(stack, &(*data)->stack_b, data));
-		reverse_rotate_a(stack, data);
+		(reverse_rotate_a(stack, data)), (push_a(stack, &(*data)->stack_b, data));
+		rotate_a(stack, data), rotate_a(stack, data);
 	}
 }
 

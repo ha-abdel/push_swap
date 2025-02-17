@@ -46,7 +46,7 @@ typedef struct s_data
     int *sorted;
     t_vars vars;
     int total_size;
-    int mid;
+    // int mid;
     int range;
 } t_data;
 
@@ -112,7 +112,7 @@ int check_numbers(char **numbers, t_data **data);
 int check_dups(char **numbers, int nb);
 
 
-void    push_swap(t_data **data, int count);
+void    push_swap(t_data **data, int count, char **numbers);
 
 void sort_array(t_data **data);
 
@@ -123,17 +123,20 @@ void    sort_helper(int **arr, int size);
 
 
 /* FUNCTIONS */
-void check_before(t_data **data);
-void check_after(t_data **data);
+void clean_all(t_data **data, char **numbers);
+void	sort_two(t_data **data, t_stack **stack);
+int	check_move(char *line);
+void check_before(t_data **data, char **numbers);
+void check_after(t_data **data, char **numbers);
 void	fill_moves(t_data **data, char **numbers);
-void	apply_moves(t_data **data);
+void	apply_moves(t_data **data, char *line);
 int ft_strcmp(const char *s1, const char *s2);
 void	rrr(t_stack **stack_a, t_stack **stack_b , t_data **data);
 void	rr(t_stack **stack_a, t_stack **stack_b , t_data **data);
 void	ss(t_stack **stack_a, t_stack **stack_b , t_data **data);
 void append_move(t_data **data, char *move);
 void    print_moves(t_moves *moves);
-void    initilize_all(t_data **data, int count);
+void    initilize_all(t_data **data, int count, char **numbers);
 void	reverse_rotate_b(t_stack **head , t_data **data);
 void    repeat_n_rotate_b(t_data **data, t_stack **stack, int n);
 void    repeat_n_rev_rotate_b(t_data **data, t_stack **stack, int n);

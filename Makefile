@@ -4,7 +4,7 @@ SRCS = algo_small_numbers.c first_algo_steps.c list_func.c push_swap.c sort.c ut
 libft_helpers.c  parser_utils.c stack_func.c algo_helpers.c libft_helpers1.c list_func1.c \
 algo_helpers1.c
 
-SRCS1 = algo_small_numbers.c first_algo_steps.c list_func.c push_swap.c sort.c utils1.c cleanup.c \
+SRCS1 = algo_small_numbers.c first_algo_steps.c list_func.c sort.c utils1.c cleanup.c \
 libft_helpers.c  parser_utils.c stack_func.c algo_helpers.c libft_helpers1.c list_func1.c \
 algo_helpers1.c get_next_line.c get_next_line_utils.c checker.c checker_utils.c
 OBJS = $(SRCS:.c=.o)

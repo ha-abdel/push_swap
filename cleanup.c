@@ -4,7 +4,7 @@ void free_numbers(char **numbers)
 {
     int i = 0;
 
-    if (!numbers || !*numbers) 
+    if (!numbers) 
         return;
     
     while (numbers[i])
@@ -52,7 +52,12 @@ void free_data(t_data **data)
 void	atoi_clean(char **numbers, t_data **data)
 {
 	free_numbers(numbers);
-	free(data);
+    // while ((*data)->moves)
+    // {
+    //     free((*data)->moves->move);
+    //     (*data)->moves = (*data)->moves->next;
+    // }
+	free(*data);
 	printf("Error: Invalid number\n");
     exit(1);
 }
