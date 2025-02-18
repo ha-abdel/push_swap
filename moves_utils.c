@@ -6,7 +6,7 @@
 /*   By: abdel-ha <abdel-ha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 12:03:18 by abdel-ha          #+#    #+#             */
-/*   Updated: 2025/02/17 12:03:41 by abdel-ha         ###   ########.fr       */
+/*   Updated: 2025/02/18 08:53:42 by abdel-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	print_moves(t_moves *moves)
 {
 	while (moves)
 	{
-		printf("%s", moves->move);
+		ft_putstr_fd(moves->move, 1);
 		moves = moves->next;
 	}
 	return ;

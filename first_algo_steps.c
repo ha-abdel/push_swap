@@ -6,7 +6,7 @@
 /*   By: abdel-ha <abdel-ha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 11:27:20 by abdel-ha          #+#    #+#             */
-/*   Updated: 2025/02/17 12:37:29 by abdel-ha         ###   ########.fr       */
+/*   Updated: 2025/02/18 09:10:44 by abdel-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	push_all_to_stack_b(t_data **data)
 		if ((*data)->stack_a->index <= nb_pushed)
 		{
 			push_b(&((*data)->stack_b), &((*data)->stack_a), data);
-			rotate_b(&((*data)->stack_b), data);
+			rotate_b(&((*data)->stack_b), data, 1);
 			nb_pushed++;
 		}
 		else if ((*data)->stack_a->index <= (nb_pushed + (*data)->range))

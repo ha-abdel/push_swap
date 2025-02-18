@@ -1,8 +1,8 @@
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -g3
+CFLAGS = -Wall -Wextra -Werror
 SRCS = algo_small_numbers.c first_algo_steps.c list_func.c push_swap.c sort.c utils1.c cleanup.c \
 libft_helpers.c  parser_utils.c stack_func.c stack_func1.c stack_func2.c moves_utils.c algo_helpers.c libft_helpers1.c list_func1.c \
-algo_helpers1.c get_next_line.c get_next_line_utils.c
+algo_helpers1.c get_next_line.c get_next_line_utils.c checker_utils.c
 
 SRCS1 = algo_small_numbers.c first_algo_steps.c list_func.c sort.c utils1.c cleanup.c \
 libft_helpers.c  parser_utils.c stack_func.c stack_func1.c stack_func2.c moves_utils.c algo_helpers.c libft_helpers1.c list_func1.c \

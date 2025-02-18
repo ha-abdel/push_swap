@@ -6,7 +6,7 @@
 /*   By: abdel-ha <abdel-ha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 12:02:09 by abdel-ha          #+#    #+#             */
-/*   Updated: 2025/02/17 16:08:23 by abdel-ha         ###   ########.fr       */
+/*   Updated: 2025/02/17 16:59:26 by abdel-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,4 +43,22 @@ void	clean_all(t_data **data, char **numbers)
 	}
 	free_data(data);
 	free_numbers(numbers);
+}
+
+int	find_smaller_index(t_data **data, t_stack **stack)
+{
+	int		small;
+	int		index;
+	t_stack	*current;
+
+	current = (*stack);
+	small = (*stack)->number;
+	while (current)
+	{
+		if (current->number < small)
+			small = current->number;
+		current = current->next;
+	}
+	index = get_node_index_by_value(data, stack, small);
+	return (index);
 }

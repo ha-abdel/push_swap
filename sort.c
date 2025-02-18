@@ -6,7 +6,7 @@
 /*   By: abdel-ha <abdel-ha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 11:38:24 by abdel-ha          #+#    #+#             */
-/*   Updated: 2025/02/17 11:38:52 by abdel-ha         ###   ########.fr       */
+/*   Updated: 2025/02/18 08:55:21 by abdel-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	sort_array(t_data **data)
 	stack = (*data)->stack_a;
 	if (!(*data)->sorted)
 	{
-		ft_putstr_fd("Error: malloc failed\n", 2);
+		ft_putstr_fd("Error\n", 2);
 		exit(1);
 	}
 	i = 0;

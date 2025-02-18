@@ -6,7 +6,7 @@
 /*   By: abdel-ha <abdel-ha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 14:41:44 by abdel-ha          #+#    #+#             */
-/*   Updated: 2025/02/17 16:08:11 by abdel-ha         ###   ########.fr       */
+/*   Updated: 2025/02/18 09:05:13 by abdel-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	fill_moves(t_data **data, char **numbers)
 			free(line);
 			line = NULL;
 			clean_all(data, numbers);
-			printf("ERROR\n");
+			ft_putstr_fd("Error\n", 2);
 			exit(1);
 		}
 		apply_moves(data, line);
@@ -74,7 +74,7 @@ int	main(int ac, char **av)
 	initilize_all(&data, count, numbers);
 	fill_numbers(ac, av, numbers, &data);
 	if (!check_numbers(numbers, &data))
-		return (printf("ERROR: Invalid number"), free_numbers(numbers),
+		return (ft_putstr_fd("Error\n", 2), free_numbers(numbers),
 			free(data), 1);
 	fill_stack(&data->stack_a, numbers, &data->total_size, &data);
 	fill_moves(&data, numbers);
@@ -86,9 +86,9 @@ int	main(int ac, char **av)
 void	apply_moves(t_data **data, char *line)
 {
 	if (!ft_strcmp(line, "sa\n"))
-		swap_a(&(*data)->stack_a, data);
+		swap_a(&(*data)->stack_a, data, 1);
 	else if (!ft_strcmp(line, "sb\n"))
-		swap_b(&(*data)->stack_b, data);
+		swap_b(&(*data)->stack_b, data, 1);
 	else if (!ft_strcmp(line, "ss\n"))
 		ss(&(*data)->stack_a, &(*data)->stack_b, data);
 	else if (!ft_strcmp(line, "pa\n"))
@@ -96,13 +96,13 @@ void	apply_moves(t_data **data, char *line)
 	else if (!ft_strcmp(line, "pb\n"))
 		push_b(&(*data)->stack_b, &(*data)->stack_a, data);
 	else if (!ft_strcmp(line, "ra\n"))
-		rotate_a(&(*data)->stack_a, data);
+		rotate_a(&(*data)->stack_a, data, 1);
 	else if (!ft_strcmp(line, "rb\n"))
-		rotate_b(&(*data)->stack_b, data);
+		rotate_b(&(*data)->stack_b, data, 1);
 	else if (!ft_strcmp(line, "rra\n"))
-		reverse_rotate_a(&(*data)->stack_a, data);
+		reverse_rotate_a(&(*data)->stack_a, data, 1);
 	else if (!ft_strcmp(line, "rrb\n"))
-		reverse_rotate_b(&(*data)->stack_b, data);
+		reverse_rotate_b(&(*data)->stack_b, data, 1);
 	else if (!ft_strcmp(line, "rrr\n"))
 		rrr(&(*data)->stack_a, &(*data)->stack_b, data);
 	else if (!ft_strcmp(line, "rr\n"))

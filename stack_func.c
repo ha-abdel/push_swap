@@ -6,13 +6,13 @@
 /*   By: abdel-ha <abdel-ha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 11:43:36 by abdel-ha          #+#    #+#             */
-/*   Updated: 2025/02/17 11:59:18 by abdel-ha         ###   ########.fr       */
+/*   Updated: 2025/02/18 09:12:47 by abdel-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	swap_a(t_stack **head, t_data **data)
+void	swap_a(t_stack **head, t_data **data, int print)
 {
 	t_stack	*first;
 	t_stack	*second;
@@ -33,10 +33,11 @@ void	swap_a(t_stack **head, t_data **data)
 		third->prev = first;
 	}
 	(*head) = second;
-	append_move(data, "sa\n");
+	if (print)
+		append_move(data, "sa\n");
 }
 
-void	swap_b(t_stack **head, t_data **data)
+void	swap_b(t_stack **head, t_data **data, int print)
 {
 	t_stack	*first;
 	t_stack	*second;
@@ -57,10 +58,11 @@ void	swap_b(t_stack **head, t_data **data)
 		third->prev = first;
 	}
 	(*head) = second;
-	append_move(data, "sb\n");
+	if (print)
+		append_move(data, "sb\n");
 }
 
-void	rotate_a(t_stack **head, t_data **data)
+void	rotate_a(t_stack **head, t_data **data, int print)
 {
 	t_stack	*first;
 	t_stack	*last;
@@ -74,10 +76,11 @@ void	rotate_a(t_stack **head, t_data **data)
 	last->next = first;
 	first->prev = last;
 	first->next = NULL;
-	append_move(data, "ra\n");
+	if (print)
+		append_move(data, "ra\n");
 }
 
-void	rotate_b(t_stack **head, t_data **data)
+void	rotate_b(t_stack **head, t_data **data, int print)
 {
 	t_stack	*first;
 	t_stack	*last;
@@ -91,12 +94,13 @@ void	rotate_b(t_stack **head, t_data **data)
 	last->next = first;
 	first->prev = last;
 	first->next = NULL;
-	append_move(data, "rb\n");
+	if (print)
+		append_move(data, "rb\n");
 }
 
 void	rr(t_stack **stack_a, t_stack **stack_b, t_data **data)
 {
-	rotate_a(stack_a, data);
-	rotate_b(stack_b, data);
+	rotate_a(stack_a, data, 0);
+	rotate_b(stack_b, data, 0);
 	append_move(data, "rr\n");
 }

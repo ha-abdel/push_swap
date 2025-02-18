@@ -6,13 +6,13 @@
 /*   By: abdel-ha <abdel-ha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 11:59:37 by abdel-ha          #+#    #+#             */
-/*   Updated: 2025/02/17 11:59:49 by abdel-ha         ###   ########.fr       */
+/*   Updated: 2025/02/18 09:13:04 by abdel-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	reverse_rotate_b(t_stack **head, t_data **data)
+void	reverse_rotate_b(t_stack **head, t_data **data, int print)
 {
 	t_stack	*first;
 	t_stack	*last;
@@ -26,7 +26,8 @@ void	reverse_rotate_b(t_stack **head, t_data **data)
 	last->next = first;
 	last->prev = NULL;
 	*head = last;
-	append_move(data, "rrb\n");
+	if (print)
+		append_move(data, "rrb\n");
 }
 
 void	push_a(t_stack **stack_a, t_stack **stack_b, t_data **data)
@@ -69,7 +70,7 @@ void	push_b(t_stack **stack_b, t_stack **stack_a, t_data **data)
 	append_move(data, "pb\n");
 }
 
-void	reverse_rotate_a(t_stack **head, t_data **data)
+void	reverse_rotate_a(t_stack **head, t_data **data, int print)
 {
 	t_stack	*first;
 	t_stack	*last;
@@ -83,12 +84,13 @@ void	reverse_rotate_a(t_stack **head, t_data **data)
 	last->next = first;
 	last->prev = NULL;
 	*head = last;
-	append_move(data, "rra\n");
+	if (print)
+		append_move(data, "rra\n");
 }
 
 void	ss(t_stack **stack_a, t_stack **stack_b, t_data **data)
 {
-	swap_a(stack_a, data);
-	swap_b(stack_b, data);
+	swap_a(stack_a, data, 0);
+	swap_b(stack_b, data, 0);
 	append_move(data, "ss\n");
 }

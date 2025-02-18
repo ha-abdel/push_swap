@@ -6,7 +6,7 @@
 /*   By: abdel-ha <abdel-ha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 11:36:29 by abdel-ha          #+#    #+#             */
-/*   Updated: 2025/02/17 11:37:30 by abdel-ha         ###   ########.fr       */
+/*   Updated: 2025/02/18 09:38:49 by abdel-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ void	fill_numbers(int ac, char **av, char **numbers, t_data **data)
 	{
 		free_data(data);
 		free_numbers(numbers);
-		ft_putstr_fd("Error: No arguments\n", 2);
 		exit(1);
 	}
 	while (i < ac)
@@ -59,7 +58,7 @@ void	fill_numbers(int ac, char **av, char **numbers, t_data **data)
 		{
 			free_data(data);
 			free_numbers(numbers);
-			ft_putstr_fd("Error: Empty argument\n", 2);
+			ft_putstr_fd("Error\n", 2);
 			exit(1);
 		}
 		ft_split(av[i], ' ', numbers);

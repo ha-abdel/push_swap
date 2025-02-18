@@ -6,7 +6,7 @@
 /*   By: abdel-ha <abdel-ha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 11:38:06 by abdel-ha          #+#    #+#             */
-/*   Updated: 2025/02/17 15:35:48 by abdel-ha         ###   ########.fr       */
+/*   Updated: 2025/02/18 09:43:44 by abdel-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,11 @@ int	main(int ac, char **av)
 	initilize_all(&data, count, numbers);
 	fill_numbers(ac, av, numbers, &data);
 	if (!check_numbers(numbers, &data))
-		return (ft_putstr_fd("ERROR: Invalid number", 2), free_numbers(numbers),
+		return (ft_putstr_fd("Error", 2), free_numbers(numbers),
 			free(data), 1);
 	fill_stack(&data->stack_a, numbers, &data->total_size, &data);
 	sort_array(&data);
+	check_before(&data, numbers);
 	push_swap(&data, count, numbers);
 	print_moves(data->moves);
 	clean_all(&data, numbers);

@@ -6,7 +6,7 @@
 /*   By: abdel-ha <abdel-ha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 11:20:20 by abdel-ha          #+#    #+#             */
-/*   Updated: 2025/02/17 11:21:15 by abdel-ha         ###   ########.fr       */
+/*   Updated: 2025/02/18 09:08:00 by abdel-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	sort_two(t_data **data, t_stack **stack)
 {
 	if ((*stack)->number > (*stack)->next->number)
 	{
-		(swap_a(stack, data));
+		(swap_a(stack, data, 1));
 	}
 	else
 		return ;
@@ -51,75 +51,73 @@ void	sort_three(t_data **data, t_stack **stack)
 		&& (*stack)->number > (*stack)->next->next->number)
 	{
 		if ((*stack)->next->number > (*stack)->next->next->number)
-			(rotate_a(stack, data)), (swap_a(stack, data));
+			(rotate_a(stack, data, 1)), (swap_a(stack, data, 1));
 		else
-			rotate_a(stack, data);
+			rotate_a(stack, data, 1);
 	}
 	else if ((*stack)->next->number > (*stack)->number
 		&& (*stack)->next->number > (*stack)->next->next->number)
 	{
 		if ((*stack)->number > (*stack)->next->next->number)
-			(rotate_a(stack, data)), (rotate_a(stack, data));
+			(rotate_a(stack, data, 1)), (rotate_a(stack, data, 1));
 		else
-			(reverse_rotate_a(stack, data)), (swap_a(stack, data));
+			(reverse_rotate_a(stack, data, 1)), (swap_a(stack, data, 1));
 	}
 	else if ((*stack)->next->next->number > (*stack)->number
 		&& (*stack)->next->next->number > (*stack)->next->number)
 	{
 		if ((*stack)->number > (*stack)->next->number)
-			swap_a(stack, data);
+			swap_a(stack, data, 1);
 	}
 }
 
 void	sort_four(t_data **data, t_stack **stack)
 {
-	int	x;
+	int	index;
 
-	push_b(&(*data)->stack_b, stack, data);
+	index = find_smaller_index(data, stack);
+	if (index == 0)
+		push_b(&(*data)->stack_b, stack, data);
+	else if (index == 1)
+		(rotate_a(stack, data, 1)), (push_b(&(*data)->stack_b, stack, data));
+	else if (index == 2)
+	{
+		(rotate_a(stack, data, 1)), (rotate_a(stack, data, 1));
+		push_b(&(*data)->stack_b, stack, data);
+	}
+	else if (index == 3)
+	{
+		(reverse_rotate_a(stack, data, 1));
+		push_b(&(*data)->stack_b, stack, data);
+	}
 	sort_three(data, stack);
-	init_vars(data, stack);
-	x = (*data)->stack_b->number;
-	if (x < (*data)->vars.a)
-		push_a(stack, &(*data)->stack_b, data);
-	else if (x > (*data)->vars.c)
-	{
-		(push_a(stack, &((*data)->stack_b), data)), (rotate_a(stack, data));
-	}
-	else if (x > (*data)->vars.a && x < (*data)->vars.b)
-		(push_a(stack, &(*data)->stack_b, data)), (swap_a(stack, data));
-	else
-	{
-		(reverse_rotate_a(stack, data)), (push_a(stack, &(*data)->stack_b,
-				data));
-		rotate_a(stack, data);
-		rotate_a(stack, data);
-	}
+	push_a(stack, &(*data)->stack_b, data);
 }
 
 void	sort_five(t_data **data, t_stack **stack)
 {
-	int	x;
+	int	index;
 
-	push_b(&(*data)->stack_b, stack, data);
-	sort_four(data, stack);
-	init_vars(data, stack);
-	x = (*data)->stack_b->number;
-	if (x < (*data)->vars.a)
-		push_a(stack, &(*data)->stack_b, data);
-	else if (x > (*data)->vars.d)
-		(push_a(stack, &(*data)->stack_b, data)), (rotate_a(stack, data));
-	else if (x > (*data)->vars.a && x < (*data)->vars.b)
-		(push_a(stack, &(*data)->stack_b, data)), (swap_a(stack, data));
-	else if (x > (*data)->vars.b && x < (*data)->vars.c)
+	index = find_smaller_index(data, stack);
+	if (index == 0)
+		push_b(&(*data)->stack_b, stack, data);
+	else if (index == 1)
+		(rotate_a(stack, data, 1)), (push_b(&(*data)->stack_b, stack, data));
+	else if (index == 2)
 	{
-		(rotate_a(stack, data)), (rotate_a(stack, data));
-		push_a(stack, &(*data)->stack_b, data);
-		(reverse_rotate_a(stack, data)), (reverse_rotate_a(stack, data));
+		(rotate_a(stack, data, 1)), (rotate_a(stack, data, 1));
+		push_b(&(*data)->stack_b, stack, data);
 	}
-	else
+	else if (index == 3)
 	{
-		(reverse_rotate_a(stack, data)), (push_a(stack, &(*data)->stack_b,
+		(reverse_rotate_a(stack, data, 1)), (reverse_rotate_a(stack, data, 1));
+		push_b(&(*data)->stack_b, stack, data);
+	}
+	else if (index == 4)
+	{
+		(reverse_rotate_a(stack, data, 1)), (push_b(&(*data)->stack_b, stack,
 				data));
-		(rotate_a(stack, data)), (rotate_a(stack, data));
 	}
+	sort_four(data, stack);
+	push_a(stack, &(*data)->stack_b, data);
 }

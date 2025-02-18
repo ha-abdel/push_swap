@@ -6,7 +6,7 @@
 /*   By: abdel-ha <abdel-ha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 12:03:52 by abdel-ha          #+#    #+#             */
-/*   Updated: 2025/02/17 16:08:41 by abdel-ha         ###   ########.fr       */
+/*   Updated: 2025/02/18 10:22:09 by abdel-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,11 +62,11 @@ void				lst_add__move_back(t_stack **head, t_moves *new);
 void				lst_add_front(t_stack **head, t_stack *new);
 void				lst_clear(t_stack **head);
 void				lst_delete(t_stack **head, t_stack *node);
-void				swap_a(t_stack **head, t_data **data);
-void				swap_b(t_stack **head, t_data **data);
-void				rotate_a(t_stack **head, t_data **data);
-void				rotate_b(t_stack **head, t_data **data);
-void				reverse_rotate_a(t_stack **head, t_data **data);
+void				swap_a(t_stack **head, t_data **data, int print);
+void				swap_b(t_stack **head, t_data **data, int print);
+void				rotate_a(t_stack **head, t_data **data, int print);
+void				rotate_b(t_stack **head, t_data **data, int print);
+void				reverse_rotate_a(t_stack **head, t_data **data, int print);
 void				append(t_stack **head, int nb);
 void				push_a(t_stack **stack_a, t_stack **stack_b, t_data **data);
 void				push_b(t_stack **stack_b, t_stack **stack_a, t_data **data);
@@ -105,7 +105,7 @@ void				ss(t_stack **stack_a, t_stack **stack_b, t_data **data);
 void				append_move(t_data **data, char *move);
 void				print_moves(t_moves *moves);
 void				initilize_all(t_data **data, int count, char **numbers);
-void				reverse_rotate_b(t_stack **head, t_data **data);
+void				reverse_rotate_b(t_stack **head, t_data **data, int print);
 void				repeat_n_rotate_b(t_data **data, t_stack **stack, int n);
 void				repeat_n_rev_rotate_b(t_data **data, t_stack **stack,
 						int n);
@@ -130,7 +130,9 @@ void				fill_stack(t_stack **stack, char **numbers, int *size,
 int					get_mid(t_data *data, int *sorted);
 void				push_all_to_stack_b(t_data **data);
 
-/* FUNCTIONS */
+void				check_before(t_data **data, char **numbers);
+void				push_smaller(t_data **data, t_stack **stack, int index);
+int					find_smaller_index(t_data **data, t_stack **stack);
 void				apply_moves(t_data **data, char *line);
 int					check_move(char *line);
 void				fill_moves(t_data **data, char **numbers);

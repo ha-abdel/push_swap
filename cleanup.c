@@ -6,7 +6,7 @@
 /*   By: abdel-ha <abdel-ha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 11:26:39 by abdel-ha          #+#    #+#             */
-/*   Updated: 2025/02/17 11:26:43 by abdel-ha         ###   ########.fr       */
+/*   Updated: 2025/02/18 08:52:12 by abdel-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,6 @@ void	atoi_clean(char **numbers, t_data **data)
 {
 	free_numbers(numbers);
 	free(*data);
-	ft_putstr_fd("Error: Invalid number\n", 2);
+	ft_putstr_fd("Error\n", 2);
 	exit(1);
 }

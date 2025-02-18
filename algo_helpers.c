@@ -6,7 +6,7 @@
 /*   By: abdel-ha <abdel-ha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 11:16:38 by abdel-ha          #+#    #+#             */
-/*   Updated: 2025/02/17 11:16:39 by abdel-ha         ###   ########.fr       */
+/*   Updated: 2025/02/18 09:06:19 by abdel-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	repeat_n_rotate(t_data **data, t_stack **stack, int n)
 	i = 0;
 	while (i < n)
 	{
-		rotate_a(stack, data);
+		rotate_a(stack, data, 1);
 		i++;
 	}
 }
@@ -31,7 +31,7 @@ void	repeat_n_rev_rotate(t_data **data, t_stack **stack, int n)
 	i = 0;
 	while (i < n)
 	{
-		reverse_rotate_a(stack, data);
+		reverse_rotate_a(stack, data, 1);
 		i++;
 	}
 }
@@ -43,7 +43,7 @@ void	repeat_n_rotate_b(t_data **data, t_stack **stack, int n)
 	i = 0;
 	while (i < n)
 	{
-		rotate_b(stack, data);
+		rotate_b(stack, data, 1);
 		i++;
 	}
 }
@@ -55,7 +55,7 @@ void	repeat_n_rev_rotate_b(t_data **data, t_stack **stack, int n)
 	i = 0;
 	while (i < n)
 	{
-		reverse_rotate_b(stack, data);
+		reverse_rotate_b(stack, data, 1);
 		i++;
 	}
 }
